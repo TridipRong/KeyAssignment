@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Product</title>
+    <link rel="stylesheet" type="text/css" href="./css/product.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+    <script src="./js/createproduct.js""></script>
+    <script src=" ./js/header.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Create Product</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="CreateCategory.html">Create Category</a></li>
+                <li><a href="CreateProduct.html">Create Product</a></li>
+            </ul>
+        </nav>
+    </header>
+    <form id=" createProductForm">
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" required><br>
+
+        <label for="productDescription">Product Description:</label>
+        <textarea id="productDescription" required></textarea><br>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" step="0.01" required><br>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" required><br>
+
+        <label for="imageLink">Image Link:</label>
+        <input type="text" id="imageLink" required><br>
+
+        <label for="category">Category:</label>
+        <select id="category" required>
+            <!-- Add more options as needed -->
+        </select><br>
+
+        <button id="submit">Create Product</button>
+    </form>
+
+
+    <div id="response"></div>
+    <footer>
+        <!-- Footer content goes here -->
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat gravida dolor a rutrum.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@example.com</p>
+                <p>Phone: 123-456-7890</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <ul class="social-icons">
+                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Your Company. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+
+</html>

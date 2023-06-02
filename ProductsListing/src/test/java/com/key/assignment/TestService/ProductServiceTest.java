@@ -34,18 +34,15 @@ public class ProductServiceTest {
     private Category category = new Category(1, "Category 1");
     @Test
     public void testGetAllProducts() {
-        // Arrange
+      
         List<Product> products = new ArrayList<>();
        
-        products.add(new Product(1, "Product 1", "Description 1", new BigDecimal(10.00), 10, category));
-        products.add(new Product(2, "Product 2", "Description 2", new BigDecimal(20.00), 20,category));
-
+        products.add(new Product(1, "Product 1", "Description 1", new BigDecimal(10.00), 10,"",category));
+        products.add(new Product(2, "Product 2", "Description 2", new BigDecimal(20.00), 20,"",category));
         when(productRepository.findAll()).thenReturn(products);
 
-        // Act
         List<Product> result = productService.getAllProducts();
 
-        // Assert
         Assertions.assertEquals(products.size(), result.size());
         Assertions.assertEquals(products, result);
         verify(productRepository, times(1)).findAll();
@@ -53,25 +50,21 @@ public class ProductServiceTest {
 
     @Test
     public void testGetProductById() throws ResourceNotFoundException {
-        // Arrange
-        Product product = new Product(1, "Product 1", "Description 1", new BigDecimal(10.00), 10,category);
-
+       
+        Product product = new Product(2, "Product 2", "Description 2", new BigDecimal(20.00), 20,"",category);
         when(productRepository.findById(1)).thenReturn(Optional.of(product));
 
-        // Act
         Product result = productService.getProductById(1);
 
-        // Assert
         Assertions.assertEquals(product, result);
         verify(productRepository, times(1)).findById(1);
     }
 
     @Test
     public void testGetProductById_ThrowsResourceNotFoundException() {
-        // Arrange
+     
         when(productRepository.findById(1)).thenReturn(Optional.empty());
 
-        // Act and Assert
         Assertions.assertThrows(ResourceNotFoundException.class, () -> {
             productService.getProductById(1);
         });
@@ -80,33 +73,30 @@ public class ProductServiceTest {
 
     @Test
     public void testCreateProduct() {
-        // Arrange
-        Product product = new Product(1, "Product 1", "Description 1", new BigDecimal(10.00), 10,category);
+   
+    	 Product product = new Product(2, "Product 2", "Description 2", new BigDecimal(20.00), 20,"",category);
 
         when(productRepository.save(any(Product.class))).thenReturn(product);
 
-        // Act
+     
         Product result = productService.createProduct(product);
 
-        // Assert
         Assertions.assertEquals(product, result);
         verify(productRepository, times(1)).save(product);
     }
 
     @Test
     public void testUpdateProduct() throws ResourceNotFoundException {
-        // Arrange
+     
     	
-        Product existingProduct = new Product(1, "Product 1", "Description 1", new BigDecimal(10.00), 10,category);
-        Product updatedProduct = new Product(1, "Updated Product", "Updated Description", new BigDecimal(20.00), 20,category);
+    	 Product existingProduct = new Product(2, "Product 2", "Description 2", new BigDecimal(20.00), 20,"",category);
+        Product updatedProduct = new Product(1, "Updated Product", "Updated Description", new BigDecimal(20.00), 20,"",category);
 
         when(productRepository.findById(1)).thenReturn(Optional.of(existingProduct));
         when(productRepository.save(any(Product.class))).thenReturn(updatedProduct);
 
-        // Act
         Product result = productService.updateProduct(1, updatedProduct);
 
-        // Assert
         Assertions.assertEquals(updatedProduct, result);
         verify(productRepository, times(1)).findById(1);
         verify(productRepository, times(1)).save(updatedProduct);
@@ -114,12 +104,10 @@ public class ProductServiceTest {
 
     @Test
     public void testUpdateProduct_ThrowsResourceNotFoundException() {
-        // Arrange
-        Product updatedProduct = new Product(1, "Updated Product", "Updated Description", new BigDecimal(20.00), 20,category);
+  
+        Product updatedProduct = new Product(1, "Updated Product", "Updated Description", new BigDecimal(20.00), 20,"",category);
 
         when(productRepository.findById(1)).thenReturn(Optional.empty());
-
-        // Act and Assert
         Assertions.assertThrows(ResourceNotFoundException.class, () -> {
             productService.updateProduct(1, updatedProduct);
         });
@@ -129,24 +117,18 @@ public class ProductServiceTest {
 
     @Test
     public void testDeleteProduct() throws ResourceNotFoundException {
-        // Arrange
-        Product product = new Product(1, "Product 1", "Description 1", new BigDecimal(10.00), 10,category);
+    	 Product product = new Product(1, "Updated Product", "Updated Description", new BigDecimal(20.00), 20,"",category);
 
         when(productRepository.existsById(1)).thenReturn(true);
-
-        // Act
         productService.deleteProduct(1);
-
-        // Assert
         verify(productRepository, times(1)).deleteById(1);
     }
 
     @Test
     public void testDeleteProduct_ThrowsResourceNotFoundException() {
-        // Arrange
+       
         when(productRepository.existsById(1)).thenReturn(false);
 
-        // Act and Assert
         Assertions.assertThrows(ResourceNotFoundException.class, () -> {
             productService.deleteProduct(1);
         });
