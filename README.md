@@ -47,7 +47,7 @@ OR using Spring Boot Suite 4 ide
 ## Frontend Deployed 
 - We deployed the frontend on netlify
 ```
-https://golden-gingersnap-699407.netlify.app/index.html
+https://649581fc6fbacb21a233f7be--comfy-fox-71f2fc.netlify.app
 ```
 
 
